@@ -8,6 +8,6 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
   const name = (q.get("n") ?? `tuneconvert.${ext}`).replace(/[^\w .-]/g, "");
   try {
     const data = await fs.readFile(path.join(DIR, `${params.id}.${ext}`));
-    return new Response(data, { headers: { "Content-Type": TYPES[ext], "Content-Disposition": `attachment; filename="${name}"` } });
+    return new Response(new Uint8Array(data), { headers: { "Content-Type": TYPES[ext], "Content-Disposition": `attachment; filename="${name}"` } });
   } catch { return new Response("This file has expired. Convert it again.", { status: 410 }); }
 }
