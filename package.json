@@ -1,0 +1,57 @@
+{
+  "name": "tuneconvert",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "dist": "next build && node scripts/prepare.js && electron-builder --win",
+    "app": "electron ."
+  },
+  "dependencies": {
+    "ffmpeg-static": "5.2.0"
+  },
+  "devDependencies": {
+    "typescript": "5.6.3",
+    "@types/node": "20.16.11",
+    "@types/react": "18.3.11",
+    "tailwindcss": "3.4.14",
+    "postcss": "8.4.47",
+    "autoprefixer": "10.4.20",
+    "next": "14.2.15",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "zod": "3.23.8",
+    "lucide-react": "0.453.0",
+    "electron": "33.2.0",
+    "electron-builder": "25.1.8"
+  },
+  "description": "Convert your own audio to MP3, WAV, M4A and MP4",
+  "author": "TuneConvert",
+  "version": "1.0.0",
+  "main": "electron/main.js",
+  "build": {
+    "appId": "app.tuneconvert",
+    "productName": "TuneConvert",
+    "files": [
+      "electron/**"
+    ],
+    "asarUnpack": [
+      "node_modules/ffmpeg-static/**"
+    ],
+    "extraResources": [
+      {
+        "from": "app-server",
+        "to": "server"
+      }
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "artifactName": "TuneConvert-Setup-${version}.${ext}"
+  }
+}
