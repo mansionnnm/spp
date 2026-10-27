@@ -5,7 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "dist": "next build && node scripts/prepare.js && electron-builder --win",
+    "dist": "next build && node scripts/prepare.js && electron-builder --win --publish never",
     "app": "electron ."
   },
   "dependencies": {
